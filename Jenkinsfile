@@ -1,3 +1,5 @@
+#!usr/bin/groovy
+@Library('my-shared-library@master') _
 node {
    
    	stage 'Stage 1'
@@ -9,4 +11,9 @@ node {
    	stage 'Deploy'
    		sh './myDeployment.sh'
   
+}
+post {
+   always {
+      notifier currentBuild.result
+   }
 }
